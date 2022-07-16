@@ -13,7 +13,7 @@
 ### How to navigate with Redux action
 #### with store.dispatch
 ```js
-import { push } from 'connected-react-router'
+import { push } from 'connected-react-router-dom'
 
 store.dispatch(push('/path/to/somewhere'))
 ```

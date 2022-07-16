@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect, ReactReduxContext } from 'react-redux'
-import { Router } from 'react-router'
+import { Router } from 'react-router-dom'
 import isEqualWith from 'lodash.isequalwith'
 import { onLocationChanged } from './actions'
 import createSelectors from './selectors'
@@ -93,7 +93,7 @@ const createConnectedRouter = (structure) => {
     }
 
     render() {
-      const { omitRouter, history, children } = this.props
+      const { omitRouter, history, children, AnyRouter } = this.props
       
       // The `omitRouter` option is available for applications that must
       // have a Router instance higher in the component tree but still desire
@@ -101,6 +101,10 @@ const createConnectedRouter = (structure) => {
 
       if (omitRouter) {
         return <>{ children }</>
+      }
+
+      if (AnyRouter) {
+        return <AnyRouter history={history}>{ children }</AnyRouter>
       }
 
       return (
@@ -123,6 +127,7 @@ const createConnectedRouter = (structure) => {
       push: PropTypes.func.isRequired,
     }).isRequired,
     basename: PropTypes.string,
+    AnyRouter: PropTypes.object,
     children: PropTypes.oneOfType([ PropTypes.func, PropTypes.node ]),
     onLocationChanged: PropTypes.func.isRequired,
     noInitialPop: PropTypes.bool,
