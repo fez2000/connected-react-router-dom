@@ -168,7 +168,7 @@ In `App.js`,
 ...
 const App = ({ history, context }) => {
   return (
-    <ConnectedRouter history={history} context={context}>
+    <ConnectedRouter history={history}  context={context}>
       { routes }
     </ConnectedRouter>
   )
